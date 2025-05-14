@@ -3,31 +3,120 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* Color system - light mode defaults */
+  --color-primary-50: 240, 249, 255;
+  --color-primary-100: 224, 242, 254;
+  --color-primary-200: 186, 230, 253;
+  --color-primary-300: 125, 211, 252;
+  --color-primary-400: 56, 189, 248;
+  --color-primary-500: 14, 165, 233;
+  --color-primary-600: 2, 132, 199;
+  --color-primary-700: 3, 105, 161;
+  --color-primary-800: 7, 89, 133;
+  --color-primary-900: 12, 74, 110;
+  --color-primary-950: 8, 47, 73;
+  
+  /* Neutral colors */
+  --color-neutral-50: 250, 250, 250;
+  --color-neutral-100: 245, 245, 245;
+  --color-neutral-200: 229, 229, 229;
+  --color-neutral-300: 212, 212, 212;
+  --color-neutral-400: 163, 163, 163;
+  --color-neutral-500: 115, 115, 115;
+  --color-neutral-600: 82, 82, 82;
+  --color-neutral-700: 64, 64, 64;
+  --color-neutral-800: 38, 38, 38;
+  --color-neutral-900: 23, 23, 23;
+  --color-neutral-950: 10, 10, 10;
+  
+  /* Semantic colors */
+  --color-success-500: 34, 197, 94;
+  --color-warning-500: 245, 158, 11;
+  --color-error-500: 239, 68, 68;
+  
+  /* App-specific variables */
+  --background-body: var(--color-neutral-50);
+  --foreground-body: var(--color-neutral-900);
+  
+  /* Layout */
+  --max-width-content: 1280px;
+  --container-padding-x: 1rem;
+  
+  /* Z-index layers */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-tooltip: 1060;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    /* App-specific variables - dark mode */
+    --background-body: var(--color-neutral-950);
+    --foreground-body: var(--color-neutral-50);
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-body));
+  background: rgb(var(--background-body));
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+  
+  h2 {
+    @apply text-2xl font-bold md:text-3xl;
+  }
+  
+  h3 {
+    @apply text-xl font-bold md:text-2xl;
+  }
+  
+  h4 {
+    @apply text-lg font-bold md:text-xl;
+  }
+  
+  h5 {
+    @apply text-base font-bold md:text-lg;
+  }
+  
+  h6 {
+    @apply text-sm font-bold md:text-base;
+  }
+  
+  a {
+    @apply text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300;
+  }
+}
+
+@layer components {
+  .container-app {
+    @apply mx-auto w-full max-w-[var(--max-width-content)] px-4 sm:px-6 lg:px-8;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  .clickable {
+    @apply cursor-pointer hover:opacity-80 transition-opacity;
+  }
+  
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
   }
 }
