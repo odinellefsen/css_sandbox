@@ -1,109 +1,72 @@
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Spacer } from "@/components/ui/Spacer";
+import { Layout } from "@/components/ui/Layout";
+import { Header } from "@/components/Header";
+import { SideNav } from "@/components/SideNav";
+import { Button } from "@/components/ui/Button";
 
 export default function Home() {
 	return (
-		<main className="min-h-screen py-12">
-			<Container>
+		<Layout
+			header={<Header />}
+			sidebar={<SideNav />}
+			headerHeight="4rem"
+			sidebarWidth="16rem"
+		>
+			<Container className="py-8">
 				<header>
 					<h1 className="text-primary-900 dark:text-primary-100">
-						Enterprise TailwindCSS Best Practices
+						Fixed Layout Solution
 					</h1>
 					<p className="mt-2 text-lg text-neutral-600 dark:text-neutral-300">
-						A comprehensive example of enterprise-level styling
+						A CSS Grid-based layout with fixed header and sidebar
 					</p>
 				</header>
 
 				<Spacer size="lg" />
 
-				<section className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+				<section className="space-y-6">
 					<div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-						<h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
-							Consistent spacing
-						</h3>
+						<h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+							Proper Layout Management
+						</h2>
 						<p className="mt-2 text-neutral-600 dark:text-neutral-300">
-							Using a consistent spacing scale across the application
+							This layout correctly handles fixed headers and sidebars without
+							using calc() or creating scrolling issues.
 						</p>
-						<div className="mt-4 space-y-2">
-							<div className="h-4 bg-primary-100 dark:bg-primary-800" />
-							<div className="h-8 bg-primary-200 dark:bg-primary-700" />
-							<div className="h-12 bg-primary-300 dark:bg-primary-600" />
+						<div className="mt-4">
+							<h3 className="font-medium">Key Features:</h3>
+							<ul className="mt-2 list-inside list-disc">
+								<li>Uses CSS Grid for perfect positioning</li>
+								<li>No calc() required for content areas</li>
+								<li>Proper overflow handling in each section</li>
+								<li>Responsive and adaptive</li>
+								<li>Dark mode compatible</li>
+							</ul>
+						</div>
+						<div className="mt-6">
+							<Button>Learn More</Button>
 						</div>
 					</div>
 
-					<div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-						<h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
-							Color system
-						</h3>
-						<p className="mt-2 text-neutral-600 dark:text-neutral-300">
-							A semantic color system with consistent shades
-						</p>
-						<div className="mt-4 flex flex-wrap gap-2">
-							<div className="h-8 w-8 rounded bg-primary-500" />
-							<div className="h-8 w-8 rounded bg-secondary-500" />
-							<div className="h-8 w-8 rounded bg-success-500" />
-							<div className="h-8 w-8 rounded bg-warning-500" />
-							<div className="h-8 w-8 rounded bg-error-500" />
-							<div className="h-8 w-8 rounded bg-neutral-500" />
+					{/* Creating additional content to demonstrate scrolling */}
+					{Array.from({ length: 10 }).map((_, index) => (
+						<div
+							key={index}
+							className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
+						>
+							<h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+								Content Block {index + 1}
+							</h3>
+							<p className="mt-2 text-neutral-600 dark:text-neutral-300">
+								This additional content demonstrates how scrolling works
+								properly in the main content area, while the header and sidebar
+								remain fixed in place.
+							</p>
 						</div>
-					</div>
-
-					<div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-						<h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
-							Typography
-						</h3>
-						<p className="mt-2 text-neutral-600 dark:text-neutral-300">
-							Consistent type scale and font weights
-						</p>
-						<div className="mt-4 space-y-2">
-							<p className="text-xs">Text Extra Small</p>
-							<p className="text-sm">Text Small</p>
-							<p className="text-base">Text Base</p>
-							<p className="text-lg">Text Large</p>
-							<p className="text-xl">Text Extra Large</p>
-						</div>
-					</div>
-				</section>
-
-				<Spacer size="xl" />
-
-				<section>
-					<h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
-						Component Library
-					</h2>
-					<p className="mt-2 text-lg text-neutral-600 dark:text-neutral-300">
-						Reusable components with consistent styling
-					</p>
-
-					<Spacer size="md" />
-
-					<div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-						<h3 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-neutral-100">
-							Buttons
-						</h3>
-
-						<div className="flex flex-wrap gap-4">
-							<Button>Default Button</Button>
-							<Button variant="secondary">Secondary</Button>
-							<Button variant="outline">Outline</Button>
-							<Button variant="ghost">Ghost</Button>
-							<Button variant="destructive">Destructive</Button>
-							<Button variant="success">Success</Button>
-							<Button variant="warning">Warning</Button>
-							<Button variant="link">Link Button</Button>
-						</div>
-
-						<Spacer size="md" />
-
-						<div className="flex flex-wrap gap-4">
-							<Button size="sm">Small</Button>
-							<Button>Default</Button>
-							<Button size="lg">Large</Button>
-						</div>
-					</div>
+					))}
 				</section>
 			</Container>
-		</main>
+		</Layout>
 	);
 }
